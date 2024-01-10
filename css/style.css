@@ -278,30 +278,30 @@ h4, h5, h6, .h4, .h5, .h6 {
 /*** Events End ***/
 
 
-/*** blog Start ***/
-.blog .blog-item {
+/*** Sermon Start ***/
+.sermon .sermon-item {
     height: 100%;
     box-shadow: 0 0 45px rgba(0, 0, 0, .08);
 }
 
-.blog-item img {
+.sermon-item img {
     transition: 0.5s;
 }
 
-.blog-item:hover img {
+.sermon-item:hover img {
     transform: scale(1.2)
 }
 
-.blog-item .blog-meta a,
-.blog-item .blog-meta a i {
+.sermon-item .sermon-meta a,
+.sermon-item .sermon-meta a i {
     transition: 0.5s;
 }
 
-.blog-item .blog-meta a:hover,
-.blog-item .blog-meta a i:hover {
+.sermon-item .sermon-meta a:hover,
+.sermon-item .sermon-meta a i:hover {
     color: var(--bs-primary) !important;
 }
-/*** blog End ***/
+/*** Sermon End ***/
 
 
 /*** Blog Start ***/
