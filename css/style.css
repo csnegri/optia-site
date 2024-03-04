@@ -255,6 +255,17 @@ h4, h5, h6, .h4, .h5, .h6 {
 }
 /*** Activities End ***/
 
+/**** Library starts ****/
+
+.library .library-item {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 45px rgba(12, 18, 20, .08);
+    transition: 0.5s;
+}
+
+/*** Library ends ***/
 
 /*** Events Start ***/
 .event-item img {
