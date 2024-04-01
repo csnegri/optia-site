@@ -129,7 +129,7 @@
                     <!-- This part is populated with the javascript at the end -->
                     <div class="col-4 col-xl-5">
                         <div class="team-img wow zoomIn" data-wow-delay="0.1s">
-                            <img src="" class="img-fluid" alt="" id="img_main">
+                            <img src="" class="img-fluid" alt="Foto del integrante de OptIA" id="img_main">
                         </div>
                     </div>
                     <div class="col-lg-8 col-xl-7">
@@ -138,10 +138,10 @@
                                 <h5 class="fw-normal fst-italic text-primary mb-4" id="title_main"></h5>
                                 <p class="mb-4" id="description_main"></p>
                                 <div class="team-icon d-flex pb-4 mb-4 border-bottom border-primary">
-                                    <a href="" class="btn btn-primary btn-lg-square me-2" id="fb_main"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="" class="btn btn-primary btn-lg-square me-2" id="twitter_main"><i class="fab fa-twitter"></i></a>
-                                    <a href="#" class="btn btn-primary btn-lg-square me-2" id="instagram_main"><i class="fab fa-instagram"></i></a>
-                                    <a href="#" class="btn btn-primary btn-lg-square" id="linkedin_main"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="" class="btn btn-primary btn-lg-square me-2 fb_main"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="" class="btn btn-primary btn-lg-square me-2 twitter_main"><i class="fab fa-twitter"></i></a>
+                                    <a href="" class="btn btn-primary btn-lg-square me-2 instagram_main"><i class="fab fa-instagram"></i></a>
+                                    <a href="" class="btn btn-primary btn-lg-square linkedin_main"><i class="fab fa-linkedin-in"></i></a>
                                 </div>
                             </div>
                     </div>
@@ -252,7 +252,7 @@
                 {
                     name: 'Claudia Negri Ribalta',
                     role: 'Presidente',
-                    description: '<p>Doctora en Informática de la Universidad Paris I Panthéon-Sorbonne e Investigadora asociada del grupo IRiSIC de la Universidad de Luxemburgo, su especilidad es la ingenería de requerimientos, la protección de datos personales, la ciber-seguridad, y la regulación y política pública de temas tecnologicos. Ha colaborado con múltiples organizaciones nacionales e internacionales en la regulación socio-técnica de nuevas tecnologías. Además cuenta con un master en Ciencias de la Computación de Trinity College Dublin y es Cientista Política de la Pontificia Universidad de Chile.</p>',
+                    description: '<p>Doctora en Informática de la Universidad Paris I Panthéon-Sorbonne e Investigadora asociada del grupo IRiSIC de la Universidad de Luxemburgo, su especilidad es la ingenería de requerimientos, la protección de datos personales, la ciber-seguridad, y la regulación y política pública de temas tecnologicos. Ha colaborado con múltiples organizaciones nacionales e internacionales en la regulación socio-técnica de nuevas tecnologías. Además cuenta con un master en Ciencias de la Computación de Trinity College Dublin y es Cientista Política de la Pontificia Universidad de Chile. </p>',
                     twitter: 'https://twitter.com/csnegri',
                     linkedin: 'https://www.linkedin.com/in/claudia-negri-ribalta/',
                     photo: 'img/Negri-Claudia.jpeg'
@@ -350,16 +350,23 @@
 
             ];
 
+
             for (i in people) {
                 member = document.getElementById('carousel_member_template').content.cloneNode(true);
                 member.querySelector('.member_template_name').innerHTML = people[i].name;
                 member.querySelector('.member_template_title').innerHTML = people[i].role;
-                member.querySelector('.member_template_fb').href = people[i].fb;
-                member.querySelector('.member_template_insta').href = people[i].insta;
-                member.querySelector('.member_template_twitter').href = people[i].twitter;
-                member.querySelector('.member_template_linkedin').href = people[i].linkedin;
-                member.querySelector('.member_template_img').src = people[i].photo;
                 member.querySelector('div[data-id]').dataset.id = i;
+                
+                mappings = {
+                    'member_template_fb': 'fb',
+                    'member_template_twitter': 'twitter',
+                    'member_template_insta': 'insta',
+                    'member_template_linkedin': 'linkedin'
+                }
+                populateSocials(member, people[i], mappings);
+
+                member.querySelector('.member_template_img').src = people[i].photo
+
 
                 document.getElementById('carousel_members').appendChild(member);
 
@@ -385,6 +392,20 @@
                 }
             })
 
+            function populateSocials(element, person, socials_mapping) {
+                for ([key, value] of Object.entries(socials_mapping)) {
+                    social = element.querySelector('.' + key);
+                    social.href = person[value];
+                    social.style.display = isEmpty(person[value]) ? 'none' : 'default'
+                }
+            }
+
+            // Empty value if empty (or falsey) or equal to '#'
+            function isEmpty(value) {
+                return !value || value == '#'
+            }
+
+
             function populateMain(id) {
                 main = document.getElementById('person_main');
 
@@ -397,11 +418,18 @@
                 main.querySelector('#name_main').innerHTML = people[id].name;
                 main.querySelector('#title_main').innerHTML = people[id].role;
                 main.querySelector('#description_main').innerHTML = people[id].description;
-                main.querySelector('#fb_main').href = people[id].fb;
-                main.querySelector('#twitter_main').href = people[id].twitter;
-                main.querySelector('#instagram_main').href = people[id].insta;
-                main.querySelector('#linkedin_main').href = people[id].linkedin;
+
+                mappings = {
+                    'fb_main': 'fb',
+                    'twitter_main': 'twitter',
+                    'instagram_main': 'insta',
+                    'linkedin_main': 'linkedin'
+                }
+
+                populateSocials(main, people[id], mappings);
             }
+
+
 
         document.body.addEventListener('onload', populateMain(0))
         </script>
