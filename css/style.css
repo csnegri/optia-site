@@ -451,11 +451,12 @@ h4, h5, h6, .h4, .h5, .h6 {
 .footer .footer-item p {
     font-size: 15px;
     line-height: 27px;
-    color: #aeaeae !important;
+    color: #aeaeae ;
 } 
 
 .footer .footer-item a {
     color: #aeaeae !important;
+    text-decoration: underline;
 }
 
 .footer .border-top,
@@ -487,5 +488,21 @@ h4, h5, h6, .h4, .h5, .h6 {
 .footer-item a:hover,
 .footer-item a i:hover {
     color: var(--bs-primary) !important;
+}
+
+#highlight-light{
+    color:#f8f9fa  !important;
+}
+
+#highlight-light:hover{
+    color:#29CBE4  !important;
+}
+
+#highlight-inverse{
+    color:#29CBE4  !important;
+}
+
+#highlight-inverse:hover{
+    color:#f8f9fa  !important;
 }
 /*** Footer End ***/
